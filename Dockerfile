@@ -16,5 +16,5 @@ COPY . .
 # Set environment variable to prevent Python from buffering stdout/stderr
 ENV PYTHONUNBUFFERED=1
 
-# Start the Flask app
-CMD ["python", "app.py"]
+# Start the Flask app with Gunicorn (4 workers, bind to 0.0.0.0:5000)
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
